@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<main class="container py-5">
+    <h1 class="mb-3">Weather Details</h1>
+
+    <form class="mb-5" th:object="${weather}">
+        <input type="hidden" disabled id="longitude" th:value="*{longitude}"/>
+        <input type="hidden" disabled id="latitude" th:value="*{latitude}"/>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="name">City name:</label>
+            <input disabled type="text" class="form-control" th:field="*{name}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="temperature">Temperature (°C):</label>
+            <input disabled type="text" class="form-control" th:field="*{weather.temperature}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="moisture">Moisture:</label>
+            <input disabled type="text" class="form-control" th:field="*{weather.moisture}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="pressure">Pressure (Pa):</label>
+            <input disabled type="text" class="form-control" th:field="*{weather.pressure}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="wind-direction">Wind direction:</label>
+            <input disabled type="text" class="form-control" th:field="*{weather.windDirection}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="wind-speed">Wind speed (km/h):</label>
+            <input disabled type="text" class="form-control" th:field="*{weather.windSpeed}">
+        </div>
+    </form>
+
+</main>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

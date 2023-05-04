@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<main class="container py-5">
+    <h1 class="mb-3">Country Details</h1>
+
+    <form class="mb-5" th:object="${country}">
+
+        <div class="mb-3">
+            <label class="form-label" th:for="name">Country name:</label>
+            <input disabled type="text" class="form-control" th:field="*{name}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="population">Population:</label>
+            <input disabled type="text" class="form-control" th:field="*{population}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="capital">Capital city name:</label>
+            <input disabled type="text" class="form-control" th:field="*{capital}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="currency">Currency:</label>
+            <input disabled type="text" class="form-control" th:field="*{currency}">
+        </div>
+    </form>
+
+</main>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

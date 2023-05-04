@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<main class="container py-5">
+    <h1 class="mb-3">Recipes</h1>
+
+    <div class="mb-3 d-flex justify-content-end">
+        <a th:href="@{/recipes/create}" class="btn btn-warning">Create</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Source</th>
+            <th>Calories</th>
+            <th>Prep. Time</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe : ${recipes}">
+            <td th:text="${recipe.id}"></td>
+            <td th:text="${recipe.title}"></td>
+            <td th:text="${recipe.source}"></td>
+            <td th:text="${recipe.calories}"></td>
+            <td th:text="${recipe.prepTime}"></td>
+            <td>
+                <a th:href="@{'/recipes/details/' + ${recipe.id}}" class="btn btn-sm btn-outline-success">Details</a>
+                <a th:href="${recipe.url}" class="btn btn-sm btn-outline-dark" target="_blank">Source</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

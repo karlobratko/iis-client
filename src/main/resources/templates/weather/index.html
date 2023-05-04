@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<main class="container py-5">
+    <h1 class="mb-3">Cities</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="city : ${cities}">
+            <td th:text="${city.name}"></td>
+            <td th:text="${city.longitude}"></td>
+            <td th:text="${city.latitude}"></td>
+            <td>
+                <a th:href="@{'/weather/details/' + ${city.name}}" class="btn btn-sm btn-outline-success">Details</a>
+                <a th:href="@{'https://maps.google.com/?q=' + ${city.latitude} + ',' + ${city.longitude}}" class="btn btn-sm btn-outline-dark" target="_blank">Location</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

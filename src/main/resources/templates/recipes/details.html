@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<main class="container py-5">
+    <h1 class="mb-3">Recipe Details</h1>
+
+    <form class="mb-5" th:object="${recipe}">
+        <div class="mb-3">
+            <label class="form-label" th:for="id">Id:</label>
+            <input disabled type="text" class="form-control" th:field="*{id}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="title">Title:</label>
+            <input disabled type="text" class="form-control" th:field="*{title}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="source">Source:</label>
+            <input disabled type="text" class="form-control" th:field="*{source}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="calories">Calories:</label>
+            <input disabled type="text" class="form-control" th:field="*{calories}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" th:for="prepTime">Prep. time:</label>
+            <input disabled type="text" class="form-control" th:field="*{prepTime}">
+        </div>
+    </form>
+
+    <h4>Health labels:</h4>
+    <div th:style="${recipe.healthLabels.size() > 1 ? 'overflow-x: scroll' : ''}" class="col d-flex justify-content-between mb-5">
+        <span class="btn btn-outline-dark rounded-pill mx-2 text-nowrap" th:each="healthLabel : ${recipe.healthLabels}" th:text="${healthLabel.name}"></span>
+    </div>
+
+    <h4>Diet labels:</h4>
+    <div th:style="${recipe.dietLabels.size() > 1 ? 'overflow-x: scroll' : ''}" class="col d-flex justify-content-between mb-5">
+        <span class="btn btn-outline-dark rounded-pill mx-2 text-nowrap" th:each="dietLabel : ${recipe.dietLabels}" th:text="${dietLabel.name}"></span>
+    </div>
+
+    <h4>Cautions:</h4>
+    <div th:style="${recipe.cautions.size() > 1 ? 'overflow-x: scroll' : ''}" class="col d-flex justify-content-between mb-5">
+        <span class="btn btn-outline-dark rounded-pill mx-2 text-nowrap" th:each="caution : ${recipe.cautions}" th:text="${caution.name}"></span>
+    </div>
+
+    <h4>Ingredients:</h4>
+    <ul class="list-group">
+        <li class="list-group-item" th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.quantity} + ' ' + ${ingredient.measure} + ' of ' + ${ingredient.food.name}">An item</li>
+    </ul>
+
+</main>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body style="height: 100vh;" class="d-flex text-center text-bg-dark">
+<div class="d-flex w-100 h-100 mx-auto flex-column">
+    <div class="mb-auto" th:insert="~{fragments/header :: header}"></div>
+
+    <main class="px-3">
+        <h1>IIS Client</h1>
+        <p class="lead">Client application for Algebra University College IIS course.</p>
+    </main>
+
+    <div class="mt-auto" th:insert="~{fragments/footer :: footer}"></div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

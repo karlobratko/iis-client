@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<main class="container py-5">
+    <h1 class="mb-3">Create Recipe</h1>
+
+    <div class="row">
+        <div class="col-6">
+            <form th:action="@{/recipes/create-xml-validate-xsd}" th:method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="fileXmlXsd" class="form-label">Upload XML file which will be validated with <strong>XSD</strong> schema:</label>
+                    <input class="form-control" name="file" type="file" id="fileXmlXsd">
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <a th:href="@{/recipes}" class="btn btn-outline-secondary me-3">Cancel</a>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-6">
+            <form th:action="@{/recipes/create-xml-validate-rng}" th:method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="fileXmlRng" class="form-label">Upload XML file which will be validated with <strong>RNG</strong> schema:</label>
+                    <input class="form-control" name="file" type="file" id="fileXmlRng">
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <a th:href="@{/recipes}" class="btn btn-outline-secondary me-3">Cancel</a>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>
